@@ -1,5 +1,7 @@
 import database.Database;
 import models.Article;
+import models.Author;
+import models.Moderator;
 import services.AuthenticationService;
 import services.impl.ArticleServicesImpl;
 import services.impl.AuthorServicesImpl;
@@ -37,9 +39,16 @@ public class Main {
                 new Date(2024,10,1), new Date (2024,10,1),
                 "Approved");
 
+
         Database.pendingArticlesList.add(articleOne);
         Database.pendingArticlesList.add(articleTwo);
         Database.pendingArticlesList.add(articleThree);
+
+        Moderator moderatorAdmin = new Moderator("admin","admin",0);
+        Database.moderatorsList.add(moderatorAdmin);
+        Author authorOne = new Author(0,"sattar","1",
+                new Date(1,1,1),"1");
+        Database.authorsList.add(authorOne);
 
         System.out.println("Welcome to the World of Articles!");
 
