@@ -1,3 +1,4 @@
+import database.Database;
 import models.Article;
 import services.AuthenticationService;
 import services.impl.ArticleServicesImpl;
@@ -14,7 +15,31 @@ public class Main {
     final static ModeratorServicesImpl moderatorServices = new ModeratorServicesImpl();
     final static ArticleServicesImpl articleServices = new ArticleServicesImpl();
 
+
+
     public static void main(String[] args) {
+
+        Article articleOne = new Article(0,"New Medicine",
+                "New Medicine founded!","New medicine founded in europe",
+                new Date(2024,1,1),true,
+                new Date(2024,1,1), new Date (2024,1,1),
+                "Approved");
+
+        Article articleTwo = new Article(1,"New Instrument",
+                "New Instrument founded!","New Instrument founded in europe",
+                new Date(2024,4,1),true,
+                new Date(2024,4,1), new Date (2024,4,1),
+                "Approved");
+
+        Article articleThree = new Article(2,"New Device","New Device founded!",
+                "New Device founded in europe",
+                new Date(2024,10,1),true,
+                new Date(2024,10,1), new Date (2024,10,1),
+                "Approved");
+
+        Database.pendingArticlesList.add(articleOne);
+        Database.pendingArticlesList.add(articleTwo);
+        Database.pendingArticlesList.add(articleThree);
 
         System.out.println("Welcome to the World of Articles!");
 
