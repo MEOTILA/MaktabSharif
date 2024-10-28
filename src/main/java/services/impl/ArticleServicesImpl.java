@@ -103,7 +103,7 @@ public class ArticleServicesImpl {
 
             switch (filterBy) {
                 case 1: // Last year
-                    if (articleDate != null && articleDate.getYear() == currentDate.getYear() - 1) {
+                    if (articleDate != null && articleDate.isAfter(currentDate.minusYears(1))) {
                         filteredArticles.add(article);
                     }
                     break;
@@ -156,7 +156,7 @@ public class ArticleServicesImpl {
 
             switch (filterBy) {
                 case 1: // Last year
-                    if (articleDate != null && articleDate.getYear() == currentDate.getYear() - 1) {
+                    if (articleDate != null && articleDate.isAfter(currentDate.minusYears(1))) {
                         filteredArticles.add(article);
                     }
                     break;
@@ -208,7 +208,7 @@ public class ArticleServicesImpl {
 
                 switch (filterBy) {
                     case 1: // Last year
-                        if (articleDate != null && articleDate.getYear() == currentDate.getYear() - 1) {
+                        if (articleDate != null && articleDate.isAfter(currentDate.minusYears(1))) {
                             filteredArticles.add(article);
                         }
                         break;
