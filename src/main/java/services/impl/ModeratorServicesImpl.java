@@ -7,6 +7,7 @@ import models.Moderator;
 import services.AuthenticationService;
 import services.UserServices;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -62,7 +63,7 @@ public class ModeratorServicesImpl implements UserServices {
         if (approveChoice.equals("y")) {
 
             pendingArticle.setArticleStatus("Approved");
-            pendingArticle.setArticlePublishDate(new Date());
+            pendingArticle.setArticlePublishDate(LocalDate.now());
             pendingArticle.setArticleIsPublished(true);
 
             int authorID = pendingArticle.getAuthorID();

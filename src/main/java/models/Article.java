@@ -1,5 +1,6 @@
 package models;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Article {
@@ -8,16 +9,16 @@ public class Article {
     private String articleTitle;
     private String articleBrief;
     private String articleText;
-    private Date articleCreateDate;
+    private LocalDate articleCreateDate;
     private boolean articleIsPublished;
-    private Date articleLastUpdateDate;
-    private Date articlePublishDate;
+    private LocalDate articleLastUpdateDate;
+    private LocalDate articlePublishDate;
     private String articleStatus;
 
     public Article(int articleID, String articleTitle, String articleBrief,
-                   String articleText, Date articleCreateDate,
-                   boolean articleIsPublished, Date articleLastUpdateDate,
-                   Date articlePublishDate, String articleStatus) {
+                   String articleText, LocalDate articleCreateDate,
+                   boolean articleIsPublished, LocalDate articleLastUpdateDate,
+                   LocalDate articlePublishDate, String articleStatus) {
 
         this.articleID = articleID;
         this.articleTitle = articleTitle;
@@ -58,11 +59,11 @@ public class Article {
         this.articleBrief = articleBrief;
     }
 
-    public Date getArticleCreateDate() {
+    public LocalDate getArticleCreateDate() {
         return articleCreateDate;
     }
 
-    public void setArticleCreateDate(Date articleCreateDate) {
+    public void setArticleCreateDate(LocalDate articleCreateDate) {
         this.articleCreateDate = articleCreateDate;
     }
 
@@ -74,19 +75,19 @@ public class Article {
         this.articleIsPublished = articleIsPublished;
     }
 
-    public Date getArticleLastUpdateDate() {
+    public LocalDate getArticleLastUpdateDate() {
         return articleLastUpdateDate;
     }
 
-    public void setArticleLastUpdateDate(Date articleLastUpdateDate) {
+    public void setArticleLastUpdateDate(LocalDate articleLastUpdateDate) {
         this.articleLastUpdateDate = articleLastUpdateDate;
     }
 
-    public Date getArticlePublishDate() {
+    public LocalDate getArticlePublishDate() {
         return articlePublishDate;
     }
 
-    public void setArticlePublishDate(Date articlePublishDate) {
+    public void setArticlePublishDate(LocalDate articlePublishDate) {
         this.articlePublishDate = articlePublishDate;
     }
 

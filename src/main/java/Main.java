@@ -7,8 +7,11 @@ import services.impl.ArticleServicesImpl;
 import services.impl.AuthorServicesImpl;
 import services.impl.ModeratorServicesImpl;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.List;
 
 public class Main {
 
@@ -21,22 +24,22 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Article articleOne = new Article(0,"New Medicine",
+        Article articleOne = new Article(100,"New Medicine",
                 "New Medicine founded!","New medicine founded in europe",
-                new Date(2024,1,1),true,
-                new Date(2024,1,1), new Date (2024,1,1),
+                LocalDate.of(2023,11,1),true,
+                LocalDate.of(2023,11,1), LocalDate.of (2023,11,1),
                 "Approved");
 
-        Article articleTwo = new Article(1,"New Instrument",
+        Article articleTwo = new Article(101,"New Instrument",
                 "New Instrument founded!","New Instrument founded in europe",
-                new Date(2024,4,1),true,
-                new Date(2024,4,1), new Date (2024,4,1),
+                LocalDate.of(2024,5,1),true,
+                LocalDate.of(2024,5,1), LocalDate.of (2024,5,1),
                 "Approved");
 
-        Article articleThree = new Article(2,"New Device","New Device founded!",
+        Article articleThree = new Article(102,"New Device","New Device founded!",
                 "New Device founded in europe",
-                new Date(2024,10,1),true,
-                new Date(2024,10,1), new Date (2024,10,1),
+                LocalDate.of(2024,10,28),true,
+                LocalDate.of(2024,10,28), LocalDate.of (2024,10,28),
                 "Approved");
 
 
@@ -46,9 +49,12 @@ public class Main {
 
         Moderator moderatorAdmin = new Moderator("admin","admin",0);
         Database.moderatorsList.add(moderatorAdmin);
+
         Author authorOne = new Author(0,"sattar","1",
                 new Date(1,1,1),"1");
         Database.authorsList.add(authorOne);
+
+
 
         System.out.println("Welcome to the World of Articles!");
 
@@ -152,7 +158,8 @@ public class Main {
         System.out.println("1. SignUp");
         System.out.println("2. Login");
         System.out.println("3. View All Published Articles");
-        System.out.println("4. Main Menu");
+        System.out.println("4. View All Published Articles by Date Filtering");
+        System.out.println("5. Main Menu");
         int option = scanner.nextInt();
 
         switch (option) {
@@ -198,7 +205,46 @@ public class Main {
                 System.out.println("Enter the Article ID to View the Full Text: ");
                 int articleIDChoice = scanner.nextInt();
                 moderatorServices.displayArticleDetails(articleIDChoice);
+                break;
+
             case 4:
+                System.out.println("1. Filter by Create Date");
+                System.out.println("2. Filter by Update Date");
+                System.out.println("3. Filter by Publish Date");
+                int filterChoice = scanner.nextInt();
+
+                System.out.println("1. Last Year");
+                System.out.println("2. Last 6 Months");
+                System.out.println("3. Last Month");
+                System.out.println("4. Last Week");
+                System.out.println("5. Last Day");
+                int filterBy = scanner.nextInt();
+
+                List<Article> filteredArticles;
+                switch (filterChoice) {
+                    case 1:
+                        filteredArticles = articleServices.viewArticlesFilteredByCreateDate(filterBy);
+                        break;
+                    case 2:
+                        filteredArticles = articleServices.viewArticlesFilteredByUpdateDate(filterBy);
+                        break;
+                    case 3:
+                        filteredArticles = articleServices.viewArticlesFilteredByPublishDate(filterBy);
+                        break;
+                    default:
+                        filteredArticles = new ArrayList<>();
+                }
+
+
+                for (Article article : filteredArticles) {
+                    System.out.println("Article ID: " + article.getArticleID());
+                    System.out.println("Article Title: " + article.getArticleTitle());
+                    System.out.println("Article Brief: " + article.getArticleBrief());
+                    System.out.println("----------------------------------");
+                }
+                break;
+
+            case 5:
                 break;
         }
 
