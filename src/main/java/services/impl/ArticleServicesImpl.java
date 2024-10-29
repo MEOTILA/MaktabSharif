@@ -101,47 +101,51 @@ public class ArticleServicesImpl {
         for (Article article : allArticles) {
             LocalDate articleDate = article.getArticleCreateDate();
 
-            switch (filterBy) {
-                case 1: // Last year
-                    if (articleDate != null && articleDate.isAfter(currentDate.minusYears(1))) {
-                        filteredArticles.add(article);
-                    }
-                    break;
-                case 2: // Last 6 months
-                    Period sixMonthsAgo = Period.ofMonths(6);
-                    LocalDate sixMonthsBefore = currentDate.minus(sixMonthsAgo);
-
-                    if (articleDate != null && articleDate.isAfter(sixMonthsBefore)) {
-                        filteredArticles.add(article);
-                    }
-                    break;
-                case 3: // Last month
-                    Period oneMonthAgo = Period.ofMonths(1);
-                    LocalDate oneMonthBefore = currentDate.minus(oneMonthAgo);
-
-                    if (articleDate != null && articleDate.isAfter(oneMonthBefore)) {
-                        filteredArticles.add(article);
-                    }
-                    break;
-                case 4: // Last week
-                    Period oneWeekAgo = Period.ofDays(7);
-                    LocalDate oneWeekBefore = currentDate.minus(oneWeekAgo);
-
-                    if (articleDate != null && articleDate.isAfter(oneWeekBefore)) {
-                        filteredArticles.add(article);
-                    }
-                    break;
-                case 5: // Last day
-                    if (articleDate != null && articleDate.isEqual(currentDate)) {
-                        filteredArticles.add(article);
-                    }
-                    break;
-                default:
-                    continue;
-            }
+            filterDate(filterBy, filteredArticles, currentDate, article, articleDate);
         }
 
         return filteredArticles;
+    }
+
+    public void filterDate(int filterBy, List<Article> filteredArticles, LocalDate currentDate, Article article, LocalDate articleDate) {
+        switch (filterBy) {
+            case 1: // Last year
+                if (articleDate != null && articleDate.isAfter(currentDate.minusYears(1))) {
+                    filteredArticles.add(article);
+                }
+                break;
+            case 2: // Last 6 months
+                Period sixMonthsAgo = Period.ofMonths(6);
+                LocalDate sixMonthsBefore = currentDate.minus(sixMonthsAgo);
+
+                if (articleDate != null && articleDate.isAfter(sixMonthsBefore)) {
+                    filteredArticles.add(article);
+                }
+                break;
+            case 3: // Last month
+                Period oneMonthAgo = Period.ofMonths(1);
+                LocalDate oneMonthBefore = currentDate.minus(oneMonthAgo);
+
+                if (articleDate != null && articleDate.isAfter(oneMonthBefore)) {
+                    filteredArticles.add(article);
+                }
+                break;
+            case 4: // Last week
+                Period oneWeekAgo = Period.ofDays(7);
+                LocalDate oneWeekBefore = currentDate.minus(oneWeekAgo);
+
+                if (articleDate != null && articleDate.isAfter(oneWeekBefore)) {
+                    filteredArticles.add(article);
+                }
+                break;
+            case 5: // Last day
+                if (articleDate != null && articleDate.isEqual(currentDate)) {
+                    filteredArticles.add(article);
+                }
+                break;
+            default:
+                return;
+        }
     }
 
 
@@ -154,44 +158,7 @@ public class ArticleServicesImpl {
         for (Article article : allArticles) {
             LocalDate articleDate = article.getArticleLastUpdateDate();
 
-            switch (filterBy) {
-                case 1: // Last year
-                    if (articleDate != null && articleDate.isAfter(currentDate.minusYears(1))) {
-                        filteredArticles.add(article);
-                    }
-                    break;
-                case 2: // Last 6 months
-                    Period sixMonthsAgo = Period.ofMonths(6);
-                    LocalDate sixMonthsBefore = currentDate.minus(sixMonthsAgo);
-
-                    if (articleDate != null && articleDate.isAfter(sixMonthsBefore)) {
-                        filteredArticles.add(article);
-                    }
-                    break;
-                case 3: // Last month
-                    Period oneMonthAgo = Period.ofMonths(1);
-                    LocalDate oneMonthBefore = currentDate.minus(oneMonthAgo);
-
-                    if (articleDate != null && articleDate.isAfter(oneMonthBefore)) {
-                        filteredArticles.add(article);
-                    }
-                    break;
-                case 4: // Last week
-                    Period oneWeekAgo = Period.ofDays(7);
-                    LocalDate oneWeekBefore = currentDate.minus(oneWeekAgo);
-
-                    if (articleDate != null && articleDate.isAfter(oneWeekBefore)) {
-                        filteredArticles.add(article);
-                    }
-                    break;
-                case 5: // Last day
-                    if (articleDate != null && articleDate.isEqual(currentDate)) {
-                        filteredArticles.add(article);
-                    }
-                    break;
-                default:
-                    continue;
-            }
+            filterDate(filterBy, filteredArticles, currentDate, article, articleDate);
         }
 
         return filteredArticles;
@@ -206,45 +173,8 @@ public class ArticleServicesImpl {
         for (Article article : allArticles) {
                 LocalDate articleDate = article.getArticlePublishDate();
 
-                switch (filterBy) {
-                    case 1: // Last year
-                        if (articleDate != null && articleDate.isAfter(currentDate.minusYears(1))) {
-                            filteredArticles.add(article);
-                        }
-                        break;
-                    case 2: // Last 6 months
-                        Period sixMonthsAgo = Period.ofMonths(6);
-                        LocalDate sixMonthsBefore = currentDate.minus(sixMonthsAgo);
-
-                        if (articleDate != null && articleDate.isAfter(sixMonthsBefore)) {
-                            filteredArticles.add(article);
-                        }
-                        break;
-                    case 3: // Last month
-                        Period oneMonthAgo = Period.ofMonths(1);
-                        LocalDate oneMonthBefore = currentDate.minus(oneMonthAgo);
-
-                        if (articleDate != null && articleDate.isAfter(oneMonthBefore)) {
-                            filteredArticles.add(article);
-                        }
-                        break;
-                    case 4: // Last week
-                        Period oneWeekAgo = Period.ofDays(7);
-                        LocalDate oneWeekBefore = currentDate.minus(oneWeekAgo);
-
-                        if (articleDate != null && articleDate.isAfter(oneWeekBefore)) {
-                            filteredArticles.add(article);
-                        }
-                        break;
-                    case 5: // Last day
-                        if (articleDate != null && articleDate.isEqual(currentDate)) {
-                            filteredArticles.add(article);
-                        }
-                        break;
-                    default:
-                        continue;
-                }
-            }
+            filterDate(filterBy, filteredArticles, currentDate, article, articleDate);
+        }
         return filteredArticles;
     }
 }

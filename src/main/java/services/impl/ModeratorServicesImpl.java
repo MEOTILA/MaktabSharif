@@ -56,6 +56,11 @@ public class ModeratorServicesImpl implements UserServices {
                 break;
             }
         }
+        if(pendingArticle == null){
+            System.out.println("Article not Found!");
+            return;
+        }
+
 
         System.out.print("Do you want to approve this article? (y/n): ");
         String approveChoice = scanner.next();
